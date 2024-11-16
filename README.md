@@ -19,3 +19,20 @@ The problems that we are trying to address are not easily addressed by the docum
         </i>
     </p>
 </p>
+
+<h2 id="purpose" align="center"><strong> Purpose </strong></h2>
+<br>
+    <p align="center">
+        This project serves as a comprehensive guide to help customers:
+        <ul>
+            <li>Identify the most suitable product for their specific needs</li>
+            <li>Understand how to effectively use our products to solve their problems</li>
+            <li>Navigate common challenges and find optimal solutions</li>
+        </ul>
+    </p>
+
+<h2 id="how-to-use" align="center"><strong> How to Use This Guide </strong></h2>
+<br>
+    <p align="center">
+        Navigate through the sections using the table of contents above. Each section provides detailed information and step-by-step instructions to help you make the most of our products and overcome common challenges.
+    </p>
