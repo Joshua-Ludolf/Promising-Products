@@ -24,11 +24,11 @@ The problems that we are trying to address are not easily addressed by the docum
 <br>
     <p align="center">
         This project serves as a comprehensive guide to help customers:
-        <ul>
+        <li>
             <li>Identify the most suitable product for their specific needs</li>
             <li>Understand how to effectively use our products to solve their problems</li>
             <li>Navigate common challenges and find optimal solutions</li>
-        </ul>
+        </li>
     </p>
 
 <h2 id="how-to-use" align="center"><strong> How to Use This Guide </strong></h2>
