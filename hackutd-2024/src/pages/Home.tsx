@@ -1,19 +1,26 @@
 import React from "react";
 import Button from "../components/Button";
 import Card from "../components/Card";
+import Summary from "../components/Summary";
+import Insights from "../components/Insights";
 
-function Home({ signOut }) {
-  return (
+type HomeProps = {
+  signOut?: () => void;
+  session: any;
+  data: any;
+};
+
+function Home({ session, data }: HomeProps) {
+  return session && data ? (
     <>
-      <section className="w-full">
-      <div>Home</div>
-      <Button text={"Hello"} onClick={signOut} />
-      
-
-      </section>
+      <Summary data={data} />
+      {data.insights && (<Insights data={data} session={session} />)}
       
     </>
+  ) : (
+    <div>loading</div>
   );
 }
 
 export default Home;
+
