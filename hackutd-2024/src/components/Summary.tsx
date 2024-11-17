@@ -108,11 +108,10 @@ function Summary({ data }) {
                   <p className="text-sm">
                     <span className="text-blue">Wired : </span>
                     {data.wired_clients_count}
-                  {"  "}
+                    {"  "}
                     <span className="text-blue">Wireless : </span>
                     {data.wireless_clients_count}
                   </p>
-                  
                 </div>
               </>
             }
@@ -121,7 +120,7 @@ function Summary({ data }) {
           <Card title={"Peak Upload Usage"} text={tx + " Mbps"} />
         </div>
       )}
-      <button onClick={handleView} className="uppercase w-full mt-10">
+      <button onClick={handleView} className="uppercase w-full mt-10 hover:underline transition-all">
         {viewText}
       </button>
     </section>
