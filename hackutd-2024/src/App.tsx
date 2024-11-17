@@ -5,6 +5,7 @@ import supabase from "../supabase";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import ProtectedRoutes from "./pages/ProtectedRoutes";
 
 export default function App() {
   const [session, setSession] = useState(null);
@@ -25,19 +26,16 @@ export default function App() {
   }
   return (
     <>
-    
       <BrowserRouter>
         <Routes>
           <Route
             path="/"
             element={<Login session={session} setSession={setSession} />}
           />
-          
-          <Route path="/home" element={ <Home signOut={signOut} />}></Route>
-          <Route
-            path="*"
-            element={<Navigate to={session ? "/dashboard" : "/login"} />}
-          />
+          <Route element={<ProtectedRoutes session={session} />}>
+              <Route path="/home" element={<Home signOut={signOut} />}>
+            </Route>
+          </Route>
         </Routes>
       </BrowserRouter>
     </>
