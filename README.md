@@ -5,7 +5,8 @@ This README is the manual and overview description of the Pinata/Frontier projec
 
 !--->
 
-<h1 id="overview" align="center"> <strong> OVERVIEW </strong></h1>
+<h1 id="title" align="center"><strong> <i> Promising Products</i></strong><hr></h1>
+<h2 id="overview" align="center"> <strong> OVERVIEW </strong></h2>
 <br>
     <p align="center">
         This project aims to provide solutions to common problems faced by customers using our products.
