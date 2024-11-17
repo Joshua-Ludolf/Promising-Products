@@ -1,5 +1,5 @@
 function Card({ title, text, color }) {
-  console.log(color);
+//   console.log(color);
   return (
     <div className="card bg-lg p-8 rounded-xl flex flex-col items-center">
       <h2 className="uppercase tracking-wide">{title}</h2>

@@ -14,7 +14,7 @@ function Home({ session, data }: HomeProps) {
   return session && data ? (
     <>
       <Summary data={data} />
-      {data.insights && (<Insights data={data} session={session} />)}
+      {(<Insights data={data} session={session} />)}
       
     </>
   ) : (
