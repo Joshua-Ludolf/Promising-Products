@@ -1,12 +1,16 @@
 import React from "react";
+import Button from "../components/Button";
 
 function Home({ signOut }) {
   return (
     <>
+      <section className="w-full">
       <div>Home</div>
-      <button onClick={signOut}>
-        sign oout
-      </button>
+      <Button text={"Hello"} onClick={signOut} />
+      
+
+      </section>
+      
     </>
   );
 }
