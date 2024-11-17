@@ -4,7 +4,7 @@ import Button from './Button'
 
 function Nav({ signOut }) {
   return (
-    <header className='bg-red w-full px-12 py-8 top-0'>
+    <header className='bg-red w-full px-12 py-8 top-0 fixed'>
       <div className='flex justify-between'>
       <img src={logo} />
       <Button onClick={signOut} text={"Log Out"}/>

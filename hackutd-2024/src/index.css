@@ -42,6 +42,9 @@ h1 {
   font-weight: 700;
 }
 
+h2 {
+  font-size: x-large;
+}
 
 .auth-container{
   display: flex;
@@ -87,7 +90,10 @@ h1 {
   
 }
 
-main{
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   min-height: 100vh;
-  align-content: center;
+  margin-top: 162px;
 }
