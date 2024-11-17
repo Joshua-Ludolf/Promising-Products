@@ -1,35 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./index.css";
+import { useState, useEffect } from "react";
+import { Auth } from "@supabase/auth-ui-react";
+import supabase from "../supabase";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [session, setSession] = useState(null);
 
+  useEffect(() => {
+    // Fetch the current session from Supabase and set it in state
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      session;
+    });
+  }, [session]);
+
+  async function signOut() {
+    const { error } = await supabase.auth.signOut();
+    console.log("sign out");
+    setSession(null);
+    return <Navigate to="/" />;
+  }
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={<Login session={session} setSession={setSession} />}
+          />
+          
+          <Route path="/home" element={ <Home signOut={signOut} />}></Route>
+          <Route
+            path="*"
+            element={<Navigate to={session ? "/dashboard" : "/login"} />}
+          />
+        </Routes>
+      </BrowserRouter>
     </>
-  )
+  );
 }
-
-export default App
