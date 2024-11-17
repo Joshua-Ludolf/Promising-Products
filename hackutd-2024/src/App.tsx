@@ -13,7 +13,6 @@ export default function App() {
   const [data, setData] = useState(null);
   const [insight, setInsight] = useState(null)
 
-  const groq = new Groq({ apiKey: import.meta.env.VITE_GROQ_API_KEY, dangerouslyAllowBrowser: true });
   
 
   useEffect(() => {
@@ -23,7 +22,6 @@ export default function App() {
       fetchData(session);
     });
 
-    getInsights()
   }, []);
 
   // console.log(session);
@@ -49,22 +47,7 @@ export default function App() {
 
 
 
-  async function getInsights(){
-    const chatCompletion = await getGroqChatCompletion();
-
-    setInsight(chatCompletion)
-
-    async function getGroqChatCompletion() {
-      return groq.chat.completions.create({
-        messages: [
-          {
-            role: "user",
-            content: "Explain the importance of fast language models",
-          },
-        ],
-        model: "llama3-8b-8192",
-      });}
-  }
+  
   console.log(insight)
 
     
