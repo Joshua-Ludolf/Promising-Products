@@ -32,8 +32,8 @@ export default function App() {
             path="/"
             element={<Login session={session} setSession={setSession} />}
           />
-          <Route element={<ProtectedRoutes session={session} />}>
-              <Route path="/home" element={<Home signOut={signOut} />}>
+          <Route element={<ProtectedRoutes session={session} signOut={signOut} />}>
+              <Route path="/home" element={<Home />}>
             </Route>
           </Route>
         </Routes>
