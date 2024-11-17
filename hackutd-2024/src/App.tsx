@@ -6,10 +6,15 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import ProtectedRoutes from "./pages/ProtectedRoutes";
+import Groq from "groq-sdk";
 
 export default function App() {
   const [session, setSession] = useState<Session | null>(null);
   const [data, setData] = useState(null);
+  const [insight, setInsight] = useState(null)
+
+  const groq = new Groq({ apiKey: import.meta.env.VITE_GROQ_API_KEY, dangerouslyAllowBrowser: true });
+  
 
   useEffect(() => {
     // Fetch the current session from Supabase and set it in state
@@ -17,14 +22,16 @@ export default function App() {
       setSession(session);
       fetchData(session);
     });
+
+    getInsights()
   }, []);
 
-  console.log(session);
-  console.log(data);
+  // console.log(session);
+  // console.log(data);
 
   async function signOut() {
     const { error } = await supabase.auth.signOut();
-    console.log("sign out");
+    // console.log("sign out");
     setSession(null);
     return <Navigate to="/" />;
   }
@@ -37,10 +44,34 @@ export default function App() {
       .single(); // Ensure it returns only one record
 
     setData(data);
-    console.log("lol");
+    // console.log("lol");
   }
-  console.log(data)
 
+
+
+  async function getInsights(){
+    const chatCompletion = await getGroqChatCompletion();
+
+    setInsight(chatCompletion)
+
+    async function getGroqChatCompletion() {
+      return groq.chat.completions.create({
+        messages: [
+          {
+            role: "user",
+            content: "Explain the importance of fast language models",
+          },
+        ],
+        model: "llama3-8b-8192",
+      });}
+  }
+  console.log(insight)
+
+    
+  
+
+  
+  // console.log(data)
 
   return (
     <>

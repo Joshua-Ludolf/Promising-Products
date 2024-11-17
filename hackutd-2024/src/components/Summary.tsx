@@ -58,10 +58,10 @@ function Summary({ data }) {
     calculateSignalStrength();
   }, []);
 
-  console.log(plan);
+  // console.log(plan);
 
-  console.log(data);
-  console.log(signalStrength);
+  // console.log(data);
+  // console.log(signalStrength);
   return (
     <section className="w-full ">
       <h1 className="text-6xl mb-8">
