@@ -18,8 +18,10 @@ interface RecommendationProps {
 }
 
 function Recommendation({ data, session }: RecommendationProps) {
-  const groq = new Groq({ apiKey: import.meta.env.VITE_GROQ_API_KEY, dangerouslyAllowBrowser: true });
-  
+  const groq = new Groq({
+    apiKey: import.meta.env.VITE_GROQ_API_KEY,
+    dangerouslyAllowBrowser: true,
+  });
 
   const [insights, setInsights] = useState([]);
   const [dislikedIndex, setDislikedIndex] = useState<number | null>(null);
@@ -42,7 +44,7 @@ function Recommendation({ data, session }: RecommendationProps) {
             {
               role: "system",
               content:
-                "you are an assistant who needs to convince the user to purchase what they ask. Limit response to one sentence.",
+                `you are an assistant who needs to convince the user to purchase what they ask. Their suggested recommendations are the following: ${JSON.stringify(userData.recommendations)}. Limit response to one sentence.`,
             },
             // Set a user message for the assistant to respond to.
             {
@@ -60,21 +62,18 @@ function Recommendation({ data, session }: RecommendationProps) {
 
     let userData = jsondata[acc_id];
 
-    let plan = userData.insights[0].data.recommended_plan;
+    let plan = userData.recommendations.plan;
 
-    let addOns = userData.insights[0].data.recommended_add_ons;
+    let addOns = userData.recommendations.add_ons;
     setPlan(plan);
     setAddOns(addOns);
 
     getInsights(userData);
-
-
-    ;
   }, []);
 
   console.log("plan " + JSON.stringify(plan));
   console.log("addon " + addOns);
-  console.log(insight)
+  console.log(JSON.stringify(data));
 
   async function handleDislike(indexToRemove: number) {
     // console.log(indexToRemove);
@@ -118,7 +117,7 @@ function Recommendation({ data, session }: RecommendationProps) {
             </h2>
           </div>
           {insight && <p>{insight.choices[0].message.content}</p>}
-          
+
           <div className="mt-8 justify-between-b flex w-full">
             <a target="_blank" rel="noopener noreferrer">
               <Button text={"Learn More"} onClick={() => {}} />
