@@ -8,15 +8,19 @@ import Login from "./pages/Login";
 import ProtectedRoutes from "./pages/ProtectedRoutes";
 
 export default function App() {
-  const [session, setSession] = useState(null);
+  const [session, setSession] = useState<Session | null>(null);
+  const [data, setData] = useState(null);
 
   useEffect(() => {
     // Fetch the current session from Supabase and set it in state
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
-      session;
+      fetchData(session);
     });
-  }, [session]);
+  }, []);
+
+  console.log(session);
+  console.log(data);
 
   async function signOut() {
     const { error } = await supabase.auth.signOut();
@@ -24,6 +28,20 @@ export default function App() {
     setSession(null);
     return <Navigate to="/" />;
   }
+
+  async function fetchData(sesh) {
+    const { data, error } = await supabase
+      .from("profile") // Replace 'profile' with your actual table name
+      .select("*") // Select all columns, or specify which columns you need
+      .eq("sess-id", sesh.user.id) // Filter by UID
+      .single(); // Ensure it returns only one record
+
+    setData(data);
+    console.log("lol");
+  }
+  console.log(data)
+
+
   return (
     <>
       <BrowserRouter>
@@ -32,9 +50,10 @@ export default function App() {
             path="/"
             element={<Login session={session} setSession={setSession} />}
           />
-          <Route element={<ProtectedRoutes session={session} signOut={signOut} />}>
-              <Route path="/home" element={<Home />}>
-            </Route>
+          <Route
+            element={<ProtectedRoutes session={session} signOut={signOut} />}
+          >
+            <Route path="/home" element={<Home session={session} data={data} />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>
