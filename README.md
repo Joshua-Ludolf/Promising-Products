@@ -8,7 +8,7 @@ This README is the manual and overview description of the Pinata/Frontier projec
 <h1 id="overview" align="center"> <strong> OVERVIEW </strong></h1>
 <br>
     <p align="center">
-        This project aims to provide solutions to common problems faced by customers using our products.
+        This project aims to provide solutions to common problems faced by customers using Frontier Internet's products.
     </p>
 
 <h2 id="background" align="center"><strong> Background </strong></h2>
